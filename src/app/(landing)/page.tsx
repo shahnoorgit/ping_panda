@@ -3,6 +3,8 @@ import Heading from "@/components/Heading"
 import MaxWidthWrapper from "@/components/MaxWidthWrapper"
 import ShinyButton from "@/components/ShinyButton"
 import MockDiscordUI from "@/components/ui/MockDiscordUI"
+import { AnimatedList, AnimatedListItem } from "@/components/ui/animated-list"
+import DiscordMessage from "@/components/DiscordMessage"
 
 const page = () => {
   return (
@@ -55,7 +57,13 @@ const page = () => {
         <div className=" relative mx-auto ">
           <MaxWidthWrapper className=" relative">
             <div className=" -m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-gray-900 lg:-m-4 lg:rounded-2xl lg:p-4 ring-inset">
-              <MockDiscordUI />
+              <MockDiscordUI>
+                <AnimatedList>
+                  <AnimatedListItem>
+                    <DiscordMessage />
+                  </AnimatedListItem>
+                </AnimatedList>
+              </MockDiscordUI>
             </div>
           </MaxWidthWrapper>
         </div>
