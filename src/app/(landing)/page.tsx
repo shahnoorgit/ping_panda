@@ -60,7 +60,30 @@ const page = () => {
               <MockDiscordUI>
                 <AnimatedList>
                   <AnimatedListItem>
-                    <DiscordMessage />
+                    <DiscordMessage
+                      badgeText="signup"
+                      content={{
+                        name: "Mataeo Oriza",
+                        email: "n2J8H@example.com",
+                      }}
+                      avatarSrc="/brand-asset-profile-picture.png"
+                      avatarAlt="Avatar"
+                      username="PingPanda"
+                      timestamp="Today at 12:34 AM"
+                      title="👤 New user sign up"
+                    />
+                    <DiscordMessage
+                      badgeText="signup"
+                      content={{
+                        name: "Mataeo Oriza",
+                        email: "n2J8H@example.com",
+                      }}
+                      avatarSrc="/brand-asset-profile-picture.png"
+                      avatarAlt="Avatar"
+                      username="PingPanda"
+                      timestamp="Today at 12:34 AM"
+                      title="👤 New user sign up"
+                    />
                   </AnimatedListItem>
                 </AnimatedList>
               </MockDiscordUI>
