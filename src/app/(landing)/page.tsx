@@ -5,9 +5,25 @@ import ShinyButton from "@/components/ShinyButton"
 import { MockDiscordUI } from "@/components/ui/MockDiscordUI"
 import { AnimatedList, AnimatedListItem } from "@/components/ui/animated-list"
 import DiscordMessage from "@/components/DiscordMessage"
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
+import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism"
 import Image from "next/image"
 
 const page = () => {
+  const codeSnippet = `await fetch("http://localhost:3000/api/v1/events", {
+  method: "POST",
+  body: JSON.stringify({
+    category: "sale",
+    fields: {
+      plan: "PRO",
+      email: "zoe.martinez2001@email.com",
+      amount: 49.00
+    }
+  }),
+  headers: {
+    Authorization: "Bearer <YOUR_API_KEY>"
+  }
+})`
   return (
     <>
       <section className=" relative py-24 sm:py-32 bg-brand-25">
@@ -214,13 +230,36 @@ const page = () => {
                   <div className=" absolute bottom-0 left-10 right-0 top-10 overflow-hidden rounded-tl-xl bg-gray-900 shadow-2xl">
                     <div className="flex bg-gray-800/40 ring-1 ring-white/5">
                       <div className="-mb-px flex text-sm/6 font-medium text-gray-400">
-                      <div className="">
-                        PingPanda.js
-                        </div></div>
+                        <div className=" border-b border-r border-b-white/20 border-r-white/10 bg-white/5 px-4 py-2 text-white">
+                          PingPanda.js
+                        </div>
+                      </div>
+                    </div>
+                    <div className=" overflow-hidden ">
+                      <div className=" max-h-[30rem] ">
+                        <SyntaxHighlighter
+                          language="typescript"
+                          style={{
+                            ...oneDark,
+                            'pre[class*="language-"]': {
+                              ...oneDark['pre[class*="language-"]'],
+                              background: "transparent",
+                              overflow: "hidden",
+                            },
+                            'code[class*="language-"]': {
+                              ...oneDark['code[class*="language-"]'],
+                              background: "transparent",
+                            },
+                          }}
+                        >
+                          {codeSnippet}
+                        </SyntaxHighlighter>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
+              <div className=" pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 max-lg:rounded-b-[2rem] lg:rounded-r-[2rem]" />
             </div>
           </div>
         </MaxWidthWrapper>
