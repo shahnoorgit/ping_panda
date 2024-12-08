@@ -1,4 +1,4 @@
-import { Check } from "lucide-react"
+import { Check, Star } from "lucide-react"
 import Heading from "@/components/Heading"
 import MaxWidthWrapper from "@/components/MaxWidthWrapper"
 import ShinyButton from "@/components/ShinyButton"
@@ -264,7 +264,85 @@ const page = () => {
           </div>
         </MaxWidthWrapper>
       </section>
-      <section></section>
+      <section className="relative py-24 sm:py-32 bg-white">
+        <MaxWidthWrapper className=" flex flex-col items-center gap-16 sm:gap-20">
+          <div>
+            <h2 className=" text-center text-base/7 font-semibold text-brand-600">
+              Experiences That Matter
+            </h2>
+            <Heading className=" text-center">
+              Real Feedback From Real People
+            </Heading>
+          </div>
+          <div className=" mx-auto grid max-w-2xl grid-cols-1 px-4 lg:mx-0 lg:max-w-none lg:grid-cols-3 devide-y lg:devide-y-0 lg:divide-x devide-gray-200">
+            {/** first experience */}
+            <div className=" flex flex-auto gap-4 bg-brand-25 sm:p-8 flex-col p-6 lg:p-16 rounded-t-[2rem] lg:rounded-tr-none lg:rounded-l-[2rem]">
+              <div className=" flex gap-0.5 mb-2 justify-center lg:justify-start">
+                <Star className="size-5 text-brand-600 fill-brand-600" />
+                <Star className="size-5 text-brand-600 fill-brand-600" />
+                <Star className="size-5 text-brand-600 fill-brand-600" />
+                <Star className="size-5 text-brand-600 fill-brand-600" />
+                <Star className="size-5 text-brand-600 fill-brand-600" />
+              </div>
+              <p className="text-base sm:text-lg lg:text-lg/8 font-medium tracking-tight text-brand-950 text-center lg:text-left text-pretty">
+                PingPanda has completely transformed how we manage our
+                workflows. The API is intuitive and incredibly reliable—it's
+                saved us hours of manual work every week!
+              </p>
+              <div className=" flex flex-col justify-center lg:justify-start sm:flex-row items-center sm:items-start gap-4 mt-2 ">
+                <Image
+                  src={"/user-2.png"}
+                  alt={"user-2"}
+                  width={48}
+                  height={48}
+                  className={" rounded-full object-cover"}
+                />
+                <div className=" flex flex-col items-center sm:items-start">
+                  <p className=" font-semibold flex items-center">
+                    Sonam Kumari
+                  </p>
+                  <p className=" text-sm/6 text-gray-600">Product Manager</p>
+                </div>
+              </div>
+            </div>
+            <div className=" flex flex-auto gap-4 bg-brand-25 sm:p-8 flex-col p-6 lg:p-16 rounded-b-[2rem] lg:rounded-bl-none lg:rounded-r-[2rem]">
+              <div className=" flex gap-0.5 mb-2 justify-center lg:justify-start">
+                <Star className="size-5 text-brand-600 fill-brand-600" />
+                <Star className="size-5 text-brand-600 fill-brand-600" />
+                <Star className="size-5 text-brand-600 fill-brand-600" />
+                <Star className="size-5 text-brand-600 fill-brand-600" />
+                <Star className="size-5 text-brand-600 fill-brand-600" />
+              </div>
+              <p className="text-base sm:text-lg lg:text-lg/8 font-medium tracking-tight text-brand-950 text-center lg:text-left text-pretty">
+                As a developer, I've used countless tools, but PingPanda stands
+                out. It's simple to use, and the insights it provides are
+                spot-on. Highly recommend it for SaaS teams!
+              </p>
+              <div className=" flex flex-col justify-center lg:justify-start sm:flex-row items-center sm:items-start gap-4 mt-2 ">
+                <Image
+                  src={"/user-1.png"}
+                  alt={"user-1"}
+                  width={48}
+                  height={48}
+                  className={" rounded-full object-cover"}
+                />
+                <div className=" flex flex-col items-center sm:items-start">
+                  <p className=" font-semibold flex items-center">
+                    Okamura Hideki
+                  </p>
+                  <p className=" text-sm/6 text-gray-600">SaaS Developer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ShinyButton
+            href="/signup"
+            className=" relative z-10 h-14 w-full max-w-xs text-base shadow-lg transition-shadow duration-300 hover:shadow-xl"
+          >
+            Start for free today
+          </ShinyButton>
+        </MaxWidthWrapper>
+      </section>
     </>
   )
 }
