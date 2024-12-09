@@ -336,7 +336,7 @@ const page = () => {
             </div>
           </div>
           <ShinyButton
-            href="/signup"
+            href="/signin"
             className=" relative z-10 h-14 w-full max-w-xs text-base shadow-lg transition-shadow duration-300 hover:shadow-xl"
           >
             Start for free today
