@@ -1,5 +1,10 @@
 import { j } from "./__internals/j"
 
+const authMiddleware = j.middleware(({ next }) => {
+  const user = { name: "john" }
+  return next({ user })
+})
+
 /**
  * Middleware for providing a built-in cache with your Prisma database.
  *
@@ -13,3 +18,4 @@ import { j } from "./__internals/j"
  */
 export const baseProcedure = j.procedure
 export const publicProcedure = baseProcedure.use(extendedDatabaseMiddleware)
+export const privateProcedure = baseProcedure.use(authMiddleware)

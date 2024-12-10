@@ -1,11 +1,30 @@
+"use client"
 //syncronize auth status to Database
 
 import Heading from "@/components/Heading"
 import LoadingSpinner from "@/components/LoadingSpinner"
+import { client } from "@/lib/client"
+import { useQuery } from "@tanstack/react-query"
 import { LucideProps } from "lucide-react"
-import React from "react"
+import { useRouter } from "next/navigation"
+import React, { useEffect } from "react"
 
 const page = () => {
+  const router = useRouter()
+  const { data } = useQuery({
+    queryFn: async () => {
+      const res = await client.auth.getDatabaseSyncStatus.$get()
+      return await res.json()
+    },
+    queryKey: ["get-database-sync-status"],
+    refetchInterval: (query) => {
+      return query.state.data?.isSynced ? false : 1000
+    },
+  })
+
+  useEffect(() => {
+    if (data?.isSynced) router.push("/dashboard")
+  }, [data, router])
   return (
     <div className=" flex w-full items-center flex-1 justify-center px-4">
       <BackgroundPattern className="absolute inset-0 left-1/2 z-0 -translate-x-1/2 opacity-75" />
