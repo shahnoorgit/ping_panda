@@ -1,4 +1,7 @@
 import React from "react"
+import { Button } from "./ui/button"
+import { ArrowLeft } from "lucide-react"
+import Heading from "./Heading"
 
 interface DashboardPageProps {
   title: string
@@ -13,7 +16,24 @@ const DashboardPage = ({
   hideBackButton,
   cta,
 }: DashboardPageProps) => {
-  return <div>Dashboard-page</div>
+  return (
+    <section className=" flex h-full w-full flex-1 flex-col">
+      <div className=" p-6 sm:p-8 flex justify-between border-b border-gray-200">
+        <div className=" flex flex-col sm:flex-row sm:items-center gap-y-2 gap-x-8">
+          {hideBackButton ? null : (
+            <Button variant="outline" className=" w-fit bg-white">
+              <ArrowLeft className=" size-4" />
+            </Button>
+          )}
+          <Heading>{title}</Heading>
+          {cta ? <div>cta</div> : null}
+        </div>
+      </div>
+      <div className=" flex-1 p-6 sm:p-8 flex flex-col overflow-auto">
+        {children}
+      </div>
+    </section>
+  )
 }
 
 export default DashboardPage
