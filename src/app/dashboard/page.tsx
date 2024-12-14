@@ -15,7 +15,7 @@ const page = async () => {
   if (!user) redirect("/signin")
 
   return (
-    <DashboardPage title="Dashboard">
+    <DashboardPage cta={<p>cta</p>} title="Dashboard">
       <DashboardPageContent />
     </DashboardPage>
   )
