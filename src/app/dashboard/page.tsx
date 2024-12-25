@@ -4,6 +4,9 @@ import { currentUser } from "@clerk/nextjs/server"
 import { redirect } from "next/navigation"
 import React from "react"
 import DashboardPageContent from "./dashboardpage-content"
+import CreateEvenetCategoryModal from "@/components/createEvenetCategoryModal"
+import { Button } from "@/components/ui/button"
+import { PlusIcon } from "lucide-react"
 
 const page = async () => {
   const auth = await currentUser()
@@ -15,7 +18,17 @@ const page = async () => {
   if (!user) redirect("/signin")
 
   return (
-    <DashboardPage cta={<p>cta</p>} title="Dashboard">
+    <DashboardPage
+      cta={
+        <CreateEvenetCategoryModal>
+          <Button>
+            <PlusIcon />
+            Add category
+          </Button>
+        </CreateEvenetCategoryModal>
+      }
+      title="Dashboard"
+    >
       <DashboardPageContent />
     </DashboardPage>
   )

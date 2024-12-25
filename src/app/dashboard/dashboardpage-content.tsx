@@ -8,6 +8,7 @@ import { format, formatDistanceToNowStrict } from "date-fns"
 import { ArrowRight, BarChart2, Clock, Database, Trash2 } from "lucide-react"
 import Link from "next/link"
 import React, { useState } from "react"
+import DashboardEmptyState from "./dashboard-empty-state"
 
 const DashboardPageContent = () => {
   const [deletingCategory, setDeletingcategory] = useState<string | null>(null)
@@ -42,7 +43,7 @@ const DashboardPageContent = () => {
   }
 
   if (!categories || categories.length === 0) {
-    return <div>empty state</div>
+    return <DashboardEmptyState />
   }
 
   return (
@@ -54,7 +55,7 @@ const DashboardPageContent = () => {
             key={category.id}
           >
             <div className=" z-0 absolute rounded-lg bg-white inset-px" />
-            <div className=" pointer-events-none ring-1 ring-black/5 z-0 absolute inset-px rounded-l shadow-sm transition-all duration-300 group-hover:shadow-md" />
+            <div className=" pointer-events-none ring-1 ring-black/5 z-0 absolute inset-px rounded-l shadow-sm transition-all duration-300 group-hover:shadow-xl" />
             <div className=" relative p-6 z-10">
               <div className=" flex items-center gap-4 mb-6">
                 <div
