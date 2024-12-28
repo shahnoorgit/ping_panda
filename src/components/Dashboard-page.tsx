@@ -1,7 +1,9 @@
+"use client"
 import React from "react"
 import { Button } from "./ui/button"
 import { ArrowLeft } from "lucide-react"
 import Heading from "./Heading"
+import { useRouter } from "next/navigation"
 
 interface DashboardPageProps {
   title: string
@@ -16,13 +18,18 @@ const DashboardPage = ({
   hideBackButton,
   cta,
 }: DashboardPageProps) => {
+  const router = useRouter()
   return (
     <section className=" flex h-full w-full flex-1 flex-col">
       <div className=" p-6 sm:p-8 flex justify-between border-b border-gray-200">
         <div className=" flex flex-col sm:flex-row sm:items-center items-start gap-6">
           <div className=" flex items-center gap-8">
             {hideBackButton ? null : (
-              <Button variant="outline" className=" w-fit bg-white">
+              <Button
+                onClick={() => router.back()}
+                variant="outline"
+                className=" w-fit bg-white"
+              >
                 <ArrowLeft className=" size-4" />
               </Button>
             )}
