@@ -1,4 +1,4 @@
-import { FREE_QUOTA, PRO_QUOTA } from "@/config"
+import { FREE_QUOTA, PRO_QUOTA } from "@/server/config"
 import { db } from "@/db"
 import { DiscordClient } from "@/lib/discord-client"
 import { CATEGORY_NAME_VALIDATOR } from "@/lib/validators/category-validator"
@@ -40,8 +40,6 @@ export const POST = async (req: NextRequest) => {
       where: { apiKey },
       include: { EventCategories: true },
     })
-
-    console.log(user, "User is here")
 
     if (!user) {
       return NextResponse.json({ message: "Invalid API Key" }, { status: 401 })
@@ -173,8 +171,13 @@ export const POST = async (req: NextRequest) => {
       eventId: event.id,
     })
   } catch (error) {
+    console.log(error)
     if (error instanceof ZodError) {
       return NextResponse.json({ message: error.message }, { status: 422 })
     }
+    return NextResponse.json(
+      { message: "Internal Server Error" },
+      { status: 500 }
+    )
   }
 }

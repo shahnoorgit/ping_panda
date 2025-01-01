@@ -20,7 +20,7 @@ const CategoryDetails = async ({ params }: PageProps) => {
 
   const user = await db.user.findUnique({ where: { externalId: auth.id } })
   if (!user) return notFound()
-  const Category = await db.EventCategory.findUnique({
+  const Category = await db.eventCategory.findUnique({
     where: { name_userId: { name: params.name, userId: user.id } },
     include: {
       _count: {

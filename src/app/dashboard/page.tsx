@@ -7,8 +7,16 @@ import DashboardPageContent from "./dashboardpage-content"
 import CreateEvenetCategoryModal from "@/components/createEvenetCategoryModal"
 import { Button } from "@/components/ui/button"
 import { PlusIcon } from "lucide-react"
+import { createCheckOut } from "@/lib/stripe"
+import { PaymentSuccessModal } from "@/components/PaymentSuccessModal"
 
-const page = async () => {
+interface PageProps {
+  searchParams: {
+    [key: string]: string | string[] | undefined
+  }
+}
+
+const page = async ({ searchParams }: PageProps) => {
   const auth = await currentUser()
   if (!auth) {
     redirect("/signup")
@@ -17,20 +25,35 @@ const page = async () => {
   const user = await db.user.findUnique({ where: { externalId: auth.id } })
   if (!user) redirect("/signin")
 
+  const intent = searchParams.intent
+  if (intent == "upgrade") {
+    const session = await createCheckOut({
+      userEmail: user.email,
+      userId: user.id,
+    })
+
+    if (session.url) redirect(session.url)
+  }
+
+  const success = searchParams.success
+
   return (
-    <DashboardPage
-      cta={
-        <CreateEvenetCategoryModal>
-          <Button>
-            <PlusIcon />
-            Add category
-          </Button>
-        </CreateEvenetCategoryModal>
-      }
-      title="Dashboard"
-    >
-      <DashboardPageContent />
-    </DashboardPage>
+    <>
+      {success ? <PaymentSuccessModal /> : null}
+      <DashboardPage
+        cta={
+          <CreateEvenetCategoryModal>
+            <Button>
+              <PlusIcon />
+              Add category
+            </Button>
+          </CreateEvenetCategoryModal>
+        }
+        title="Dashboard"
+      >
+        <DashboardPageContent />
+      </DashboardPage>
+    </>
   )
 }
 
