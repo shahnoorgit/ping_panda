@@ -1,5 +1,6 @@
 import { httpHandler } from "@/server"
 
-export const runtime = "edge"
+// Setting the runtime to 'nodejs'
+export const runtime = "nodejs"
 
 export { httpHandler as GET, httpHandler as POST }
