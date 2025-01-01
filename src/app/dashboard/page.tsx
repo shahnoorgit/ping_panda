@@ -18,15 +18,22 @@ interface PageProps {
 
 const page = async ({ searchParams }: PageProps) => {
   const auth = await currentUser()
+
   if (!auth) {
-    redirect("/signup")
+    redirect("/sign-in")
   }
 
-  const user = await db.user.findUnique({ where: { externalId: auth.id } })
-  if (!user) redirect("/signin")
+  const user = await db.user.findUnique({
+    where: { externalId: auth.id },
+  })
+
+  if (!user) {
+    return redirect("/welcome")
+  }
 
   const intent = searchParams.intent
-  if (intent == "upgrade") {
+
+  if (intent === "upgrade") {
     const session = await createCheckOut({
       userEmail: user.email,
       userId: user.id,
